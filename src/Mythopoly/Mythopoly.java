@@ -11,21 +11,26 @@ package Mythopoly;
  */
 public class Mythopoly {
 
+    
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Player tNewPlayer=new Player(2000,'#');
-        System.out.println(tNewPlayer);
+        Players tPlayers = new Players();
         
-       
-        tNewPlayer.AddAnimal(new Animal("Kraken"));
-        tNewPlayer.AddAnimal(new Animal("Cyclops"));
-        tNewPlayer.AddAnimal(new Animal("Dragon"));
-        tNewPlayer.AddAnimal(new Animal("Boromir"));
+        Player tNewPlayer1=new Player(2000,'#');
+        tNewPlayer1.AddAnimal(new Animal("Kraken"));
+        tNewPlayer1.AddAnimal(new Animal("Cyclops"));
+        tPlayers.AddPlayer(tNewPlayer1);
+        
+        
+        Player tNewPlayer2=new Player(2000,'@');
+        tNewPlayer2.AddAnimal(new Animal("Dragon"));
+        tNewPlayer2.AddAnimal(new Animal("Boromir"));
+        tPlayers.AddPlayer(tNewPlayer2);
 
-        tNewPlayer.PrintAnimals();
+        tPlayers.PrintPlayers();
     }
     
 }

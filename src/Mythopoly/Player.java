@@ -14,7 +14,7 @@ import java.util.LinkedList;
 public class Player {
     public int money;
     public char counter;
-    public LinkedList<Animal> Animals;
+    public LinkedList<Animal> Animals;      //Player stores animals in list
     
     public Player(int vMoney,char vCounter ) {
         money=vMoney;
@@ -32,9 +32,13 @@ public class Player {
         }
     }
     
+    public void PrintPlayer(){
+        System.out.println(this);
+        PrintAnimals();
+    }
     
-  @Override
-  public String toString() {
-    return String.format("Player %c Cash £%d",counter,money);
-  }
+    @Override
+    public String toString() {
+      return String.format("Player %c Cash £%d",counter,money);
+    }
 }
