@@ -9,15 +9,15 @@ package Mythopoly;
  *
  * @author maxle
  */
-public class Animal {
+public class ChanceCard {
     public String name;
     
-    public Animal(String vName) {
+    public ChanceCard(String vName) {
         name=vName;
     }
     
     @Override
     public String toString() {
-    return String.format("Animal: %s",name);
+    return String.format("Card: %s",name);
   }
 }

@@ -5,40 +5,29 @@
  */
 package Mythopoly;
 
-import java.util.LinkedList;
-
 /**
  *
  * @author maxle
  */
 public class Player {
     public int money;
-    public char counter;
-    public LinkedList<Animal> Animals;      //Player stores animals in list
+    public String counter;
+    public String name;
+
     
-    public Player(int vMoney,char vCounter ) {
-        money=vMoney;
+    public Player(String vCounter, String vName) {
+        money=2000;
         counter=vCounter;
-        Animals=new LinkedList<>();
+        name=vName;        
     }
-    
-    public void AddAnimal(Animal vAnimal) {
-        Animals.add(vAnimal);
-    }
-    
-    public void PrintAnimals(){
-        for(int i=0; i<Animals.size();i++) {
-            System.out.println(Animals.get(i));
-        }
-    }
+
     
     public void PrintPlayer(){
         System.out.println(this);
-        PrintAnimals();
     }
     
     @Override
     public String toString() {
-      return String.format("Player %c Cash £%d",counter,money);
+      return String.format("Player %s [%s] Cash £%d",name,counter,money);
     }
 }
