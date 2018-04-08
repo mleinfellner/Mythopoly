@@ -10,14 +10,28 @@ package Mythopoly;
  * @author maxle
  */
 public class ChanceCard {
-    public String name;
+    private String name;
+    private int value; 
     
-    public ChanceCard(String vName) {
+    public ChanceCard(String vName, int vValue) {
         name=vName;
+        value=vValue;
+    }
+    
+    public int GetValue(){
+        return value;
+    }
+    
+    public String GetName(){
+        return name;
     }
     
     @Override
     public String toString() {
-    return String.format("Card: %s",name);
-  }
+        if (value<0){
+            return String.format("%s Pay £%d",name, -value);  //used for negative payments
+        } else {
+            return String.format("%s Collect £%d",name, value);  //used for positive payments
+        }
+    }
 }

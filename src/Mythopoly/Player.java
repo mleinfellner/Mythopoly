@@ -10,9 +10,9 @@ package Mythopoly;
  * @author maxle
  */
 public class Player {
-    public int money;
-    public String counter;
-    public String name;
+    private int money;
+    private String counter;
+    private String name;
 
     
     public Player(String vCounter, String vName) {
@@ -21,9 +21,21 @@ public class Player {
         name=vName;        
     }
 
-    
+
+    public String GetName(){
+        return name;
+    }
+    public int GetMoney(){
+        return money;
+    }
     public void PrintPlayer(){
         System.out.println(this);
+    }
+    
+    public String PlayerDrawsChanceCard (){
+        ChanceCard tPickCard=Mythopoly.MythopolyGame.AllChanceCards.GetTopCard();    //Use static to access List in Mythopoly
+        money += tPickCard.GetValue();
+        return  tPickCard.toString();
     }
     
     @Override
