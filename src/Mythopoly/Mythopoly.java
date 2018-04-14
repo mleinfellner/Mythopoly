@@ -11,10 +11,11 @@ package Mythopoly;
  */
 public class Mythopoly {
 
-    public  static  Mythopoly   MythopolyGame;
+    public static Mythopoly MythopolyGame;
     
-    public  Players AllPlayers; 
+    public Players AllPlayers; 
     public ChanceCards AllChanceCards;
+    public Board theBoard;
     
     public static void main(String[] args) {
         // TODO code application logic here
@@ -31,6 +32,8 @@ public class Mythopoly {
             AllPlayers.AddPlayer();  //call this to ask user for name and counter choice, sets up player
          }
         
+        theBoard = new Board(AllPlayers);   //this sets up the board
+        
         //Initialise Cards
         AllChanceCards=new ChanceCards();  //this sets up chance cards
         AllChanceCards.Initialise();   //adds 20 cards & Shuffles
@@ -38,18 +41,25 @@ public class Mythopoly {
 
     }
     
-    void    Play() {
+    void Play() {
         boolean tQuit=false;
      
         while(!tQuit) {
+            boolean[] missAGo = {false, false, false, false};
             for(int tPlayerIndex =0;tPlayerIndex<4;tPlayerIndex++) {
                 Player  tPlayer=AllPlayers.GetPlayer(tPlayerIndex);
-                if(tPlayer!=null) {
+                tPlayer.increasePosition((int )(Math.random() * 4 + 1)); //to do: make it increment by the dice amount.
+                if(tPlayer!=null && missAGo[tPlayerIndex] == false) {
                     Helpers.ReadString("Press key");
+                    int missAGoPlayer = theBoard.printBoard();
+                    if (missAGoPlayer != -1) {
+                        missAGo[missAGoPlayer] = true;
+                    }
                     System.out.println("Before:"+tPlayer);
                     String tCard = tPlayer.PlayerDrawsChanceCard();
                     System.out.println("Card:" +tCard + " " +tPlayer);
                 }
+                missAGo[tPlayerIndex] = false;
             }
         }
     }

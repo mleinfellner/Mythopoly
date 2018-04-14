@@ -13,14 +13,36 @@ public class Player {
     private int money;
     private String counter;
     private String name;
+    private int position;
 
     
     public Player(String vCounter, String vName) {
+        position=0;
         money=2000;
         counter=vCounter;
         name=vName;        
     }
-
+    
+    public char GetCounter() {
+        return counter.toCharArray()[0];
+    }
+    
+    public void increasePosition(int increaseBy) {
+        position = (position + increaseBy);
+        if (position > 26) {
+            System.out.println("You got 500 monies.");
+            money += 500;
+        }
+        else if (position == 26) {
+            System.out.println("You got 1000 monies.");
+            money += 1000;
+        } 
+        position = position % 26;
+    }
+    
+    public int GetPosition() {
+        return position;
+    }
 
     public String GetName(){
         return name;

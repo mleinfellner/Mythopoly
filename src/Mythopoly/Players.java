@@ -15,9 +15,9 @@ import java.util.Scanner;
 public class Players {
     private LinkedList<Player> Players = new LinkedList<>();  //list of players
     private LinkedList<String> Counters = new LinkedList<>();  //list of counters
+    private int numPlayers = 0;
     
-    
-     public Players(){
+    public Players(){
          Counters.add("#"); //adding possible counters
          Counters.add("@");
          Counters.add("!");
@@ -41,6 +41,7 @@ public class Players {
         String tCounter = Counters.remove(tCounterChoice-1);  //get the string at index and remove it from list
         Player tPlayer = new Player(tCounter, tPlayerName);  //make a new player
         Players.add(tPlayer);  //add player to list of players
+        numPlayers ++;
     }
     
     public void PrintPlayers(){  //prints the players details after every player is setup
@@ -53,6 +54,10 @@ public class Players {
     public Player GetPlayer(int vIndex){
         if(vIndex<0 || vIndex>=Players.size())  return null; //player index is wrong
         return Players.get(vIndex);
+    }
+    
+    public int getNumPlayers() {
+        return numPlayers;
     }
     
 }
