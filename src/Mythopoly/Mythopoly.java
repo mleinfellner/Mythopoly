@@ -51,9 +51,6 @@ public class Mythopoly {
                     tPlayer.increasePosition((int )(Math.random() * 4 + 1)); //to do: make it increment by the dice amount.
                     Helpers.ReadString("Press key");
                     theBoard.printBoard(missAGo);
-                    /*if (missAGoPlayer != -1) {
-                        missAGo[missAGoPlayer] = true;
-                    }*/
                     System.out.println("Before:"+tPlayer);
                     String tCard = tPlayer.PlayerDrawsChanceCard();
                     System.out.println("Card:" +tCard + " " +tPlayer);
