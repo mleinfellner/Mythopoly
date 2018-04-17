@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Mythopoly;
+
 /**
  *
  * @author rlein
@@ -47,10 +48,13 @@ public class Mythopoly {
             boolean[] missAGo = {false, false, false, false};
             for(int tPlayerIndex =0;tPlayerIndex<4;tPlayerIndex++) {
                 Player  tPlayer=AllPlayers.GetPlayer(tPlayerIndex);
+                tPlayer.increasePosition((int )(Math.random() * 4 + 1)); //to do: make it increment by the dice amount.
                 if(tPlayer!=null && missAGo[tPlayerIndex] == false) {
-                    tPlayer.increasePosition((int )(Math.random() * 4 + 1)); //to do: make it increment by the dice amount.
                     Helpers.ReadString("Press key");
-                    theBoard.printBoard(missAGo);
+                    int missAGoPlayer = theBoard.printBoard();
+                    if (missAGoPlayer != -1) {
+                        missAGo[missAGoPlayer] = true;
+                    }
                     System.out.println("Before:"+tPlayer);
                     String tCard = tPlayer.PlayerDrawsChanceCard();
                     System.out.println("Card:" +tCard + " " +tPlayer);
