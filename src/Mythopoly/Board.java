@@ -1,4 +1,5 @@
 package Mythopoly;
+
 public class Board {
     private Players players;
     public Board(Players gPlayers) {

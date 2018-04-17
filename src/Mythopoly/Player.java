@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Mythopoly;
 
-/**
- *
- * @author maxle
- */
 public class Player {
     private int money;
     private String counter;
@@ -31,11 +22,11 @@ public class Player {
     public void increasePosition(int increaseBy) {
         position = (position + increaseBy);
         if (position > 26) {
-            System.out.println("You got 500 monies.");
+            System.out.println("You got £500 for passing start.");
             money += 500;
         }
         else if (position == 26) {
-            System.out.println("You got 1000 monies.");
+            System.out.println("You got £1000 for landing on start.");
             money += 1000;
         } 
         position = position % 26;

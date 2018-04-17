@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Mythopoly;
-/**
- *
- * @author rlein
- */
+
 public class Mythopoly {
 
     public static Mythopoly MythopolyGame;
@@ -46,18 +38,23 @@ public class Mythopoly {
             for(int tPlayerIndex =0;tPlayerIndex<4;tPlayerIndex++) {
                 Player  tPlayer=AllPlayers.GetPlayer(tPlayerIndex);
                 if(tPlayer!=null && tPlayer.missAGo == false) {
-                    Helpers.ReadString("Press key");
-                    int total = die1.roll() + die2.roll();
+                    Helpers.ReadString("Press key: ");
+                    int dieValue1 = die1.roll();
+                    int dieValue2 = die2.roll();
+                    int total = dieValue1 + dieValue2;
                     tPlayer.increasePosition(total); 
                     System.out.println("You rolled " + total);
-                    theBoard.printBoard();
-                    System.out.println("Before:"+tPlayer);
-                    String tCard = tPlayer.PlayerDrawsChanceCard();
-                    System.out.println("Card:" +tCard + " " +tPlayer);
+                    System.out.println("Balance: "+tPlayer);
+                    if (dieValue1 == dieValue2) {
+                        System.out.println("You rolled a double!");
+                        String tCard = tPlayer.PlayerDrawsChanceCard();
+                        System.out.println("Card: " +tCard + " " +tPlayer);
+                    }
                     if (tPlayer.GetPosition() == 13) {
                         tPlayer.missAGo = true;
-                        System.out.println(tPlayer.GetName() + " will miss a turn");
+                        System.out.println(tPlayer.GetName() + " will miss a turn.");
                     }
+                    theBoard.printBoard();
                 }
                 else {
                     tPlayer.missAGo = false;

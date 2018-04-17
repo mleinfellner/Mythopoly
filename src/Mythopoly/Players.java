@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Mythopoly;
 
 import java.util.LinkedList;
 import java.util.Scanner;
 
-/**
- *
- * @author maxle
- */
 public class Players {
     private LinkedList<Player> Players = new LinkedList<>();  //list of players
     private LinkedList<String> Counters = new LinkedList<>();  //list of counters
@@ -35,7 +26,7 @@ public class Players {
     }
     
     public void AddPlayer() {  //adds a player to the game
-        String tPlayerName = Helpers.ReadStringNotEmpty("Please enter your name:");
+        String tPlayerName = Helpers.ReadStringNotEmpty("Please enter your name: ");
         DisplayAvailableCounters();
         int tCounterChoice = Helpers.ReadNumber(1,Counters.size());
         String tCounter = Counters.remove(tCounterChoice-1);  //get the string at index and remove it from list
