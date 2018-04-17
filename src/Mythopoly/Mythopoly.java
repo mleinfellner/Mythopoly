@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package Mythopoly;
-
 /**
  *
  * @author rlein
@@ -37,30 +36,36 @@ public class Mythopoly {
         //Initialise Cards
         AllChanceCards=new ChanceCards();  //this sets up chance cards
         AllChanceCards.Initialise();   //adds 20 cards & Shuffles
- 
-
     }
     
     void Play() {
         boolean tQuit=false;
-     
+        Dice die1 = new Dice(6);
+        Dice die2 = new Dice(6);
         while(!tQuit) {
-            boolean[] missAGo = {false, false, false, false};
             for(int tPlayerIndex =0;tPlayerIndex<4;tPlayerIndex++) {
                 Player  tPlayer=AllPlayers.GetPlayer(tPlayerIndex);
-                tPlayer.increasePosition((int )(Math.random() * 4 + 1)); //to do: make it increment by the dice amount.
-                if(tPlayer!=null && missAGo[tPlayerIndex] == false) {
+                if(tPlayer!=null && tPlayer.missAGo == false) {
                     Helpers.ReadString("Press key");
-                    int missAGoPlayer = theBoard.printBoard();
-                    if (missAGoPlayer != -1) {
-                        missAGo[missAGoPlayer] = true;
-                    }
+                    int total = die1.roll() + die2.roll();
+                    tPlayer.increasePosition(total); 
+                    System.out.println("You rolled " + total);
+                    theBoard.printBoard();
                     System.out.println("Before:"+tPlayer);
                     String tCard = tPlayer.PlayerDrawsChanceCard();
                     System.out.println("Card:" +tCard + " " +tPlayer);
+                    if (tPlayer.GetPosition() == 13) {
+                        tPlayer.missAGo = true;
+                        System.out.println(tPlayer.GetName() + " will miss a turn");
+                    }
                 }
-                missAGo[tPlayerIndex] = false;
+                else {
+                    tPlayer.missAGo = false;
+                }
+                
             }
         }
     }
 }
+
+

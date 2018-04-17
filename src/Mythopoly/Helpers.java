@@ -18,7 +18,7 @@ public class Helpers {
         Scanner tReader = new Scanner(System.in);
         boolean tSuccess = false;
         while(!tSuccess) {
-            System.out.print(String.format("Type in a number between %d and %d: ",vLow, vHigh));
+            System.out.print(String.format("Type in a number between %d and %d:",vLow, vHigh));
             try {  //try tries the code out even if it might crash
                     tLine=tReader.nextLine();
                     tNumber = Integer.parseInt(tLine);

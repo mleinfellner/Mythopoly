@@ -14,6 +14,7 @@ public class Player {
     private String counter;
     private String name;
     private int position;
+    public boolean missAGo = false;
 
     
     public Player(String vCounter, String vName) {

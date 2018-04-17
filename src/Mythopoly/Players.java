@@ -35,7 +35,7 @@ public class Players {
     }
     
     public void AddPlayer() {  //adds a player to the game
-        String tPlayerName = Helpers.ReadStringNotEmpty("Please enter your name: ");
+        String tPlayerName = Helpers.ReadStringNotEmpty("Please enter your name:");
         DisplayAvailableCounters();
         int tCounterChoice = Helpers.ReadNumber(1,Counters.size());
         String tCounter = Counters.remove(tCounterChoice-1);  //get the string at index and remove it from list
