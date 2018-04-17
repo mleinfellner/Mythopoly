@@ -19,7 +19,7 @@ public class Player {
     
     public Player(String vCounter, String vName) {
         position=0;
-        money=2000;
+        money=2500;
         counter=vCounter;
         name=vName;        
     }
