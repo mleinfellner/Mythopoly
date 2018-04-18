@@ -9,10 +9,10 @@ public class Player {
 
     
     public Player(String vCounter, String vName) {
-        position=0;
-        money=2500;
-        counter=vCounter;
-        name=vName;        
+        position = 0;
+        money = 2500;
+        counter = vCounter;
+        name = vName;        
     }
     
     public char GetCounter() {
@@ -47,9 +47,13 @@ public class Player {
     }
     
     public String PlayerDrawsChanceCard (){
-        ChanceCard tPickCard=Mythopoly.MythopolyGame.AllChanceCards.GetTopCard();    //Use static to access List in Mythopoly
+        ChanceCard tPickCard = Mythopoly.MythopolyGame.AllChanceCards.GetTopCard();    //Use static to access List in Mythopoly
         money += tPickCard.GetValue();
-        return  tPickCard.toString();
+        return tPickCard.toString();
+    }
+    
+    public void addMoney(int tMoney) {
+        money += tMoney;
     }
     
     @Override

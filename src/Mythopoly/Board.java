@@ -2,6 +2,7 @@ package Mythopoly;
 
 public class Board {
     private Players players;
+    private Animals animals;  
     public Board(Players gPlayers) {
         this.players = gPlayers;
     }

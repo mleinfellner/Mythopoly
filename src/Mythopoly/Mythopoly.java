@@ -1,5 +1,7 @@
 package Mythopoly;
 
+import java.util.Scanner;
+
 public class Mythopoly {
 
     public static Mythopoly MythopolyGame;
@@ -31,35 +33,74 @@ public class Mythopoly {
     }
     
     void Play() {
-        boolean tQuit=false;
+        boolean tQuit = false;
+        Animals animals = new Animals();
         Dice die1 = new Dice(6);
         Dice die2 = new Dice(6);
         while(!tQuit) {
-            for(int tPlayerIndex =0;tPlayerIndex<4;tPlayerIndex++) {
+            for(int tPlayerIndex = 0; tPlayerIndex < 4; tPlayerIndex ++) {
                 Player  tPlayer=AllPlayers.GetPlayer(tPlayerIndex);
                 if(tPlayer!=null && tPlayer.missAGo == false) {
                     Helpers.ReadString("Press key: ");
                     int dieValue1 = die1.roll();
                     int dieValue2 = die2.roll();
                     int total = dieValue1 + dieValue2;
-                    tPlayer.increasePosition(total); 
-                    System.out.println("You rolled " + total);
+                    theBoard.printBoard();
+                    tPlayer.increasePosition(total);
                     System.out.println("Balance: "+tPlayer);
+                    System.out.println("You rolled " + total + ".");
+                    int position = tPlayer.GetPosition();
+                    
+                    if (position != 0 && position != 13)
+                        System.out.println("You've landed on the " + animals.name(position) + ".");
+                    
                     if (dieValue1 == dieValue2) {
                         System.out.println("You rolled a double!");
                         String tCard = tPlayer.PlayerDrawsChanceCard();
                         System.out.println("Card: " +tCard + " " +tPlayer);
                     }
-                    if (tPlayer.GetPosition() == 13) {
+                    
+                    if (position == 13) {
                         tPlayer.missAGo = true;
                         System.out.println(tPlayer.GetName() + " will miss a turn.");
                     }
-                    theBoard.printBoard();
+                    
+                    if (animals.owned(position) == 1) {
+                        System.out.println("This animal is on level " + animals.level(position));
+                        if (animals.owner(position) != tPlayerIndex) {
+                            tPlayer.addMoney(-animals.rent(position));
+                            System.out.println("You have been charged £" + animals.rent(position) + " rent for landing on the " + animals.name(position) + ".");
+                            System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                        }
+                        else {
+                            if (animals.level(position) < 3) {
+                                System.out.print("Would you like to upgrade " + animals.name(position) + " for £" + animals.upgradePrice(position) + "? Enter Y/N: ");
+                                Scanner reader = new Scanner(System.in);
+                                char choice = reader.next().charAt(0);
+                                if (choice == 'y' || choice == 'Y') {
+                                    tPlayer.addMoney(-animals.upgradePrice(position));
+                                    animals.upgrade(position);
+                                    System.out.println("You have been charged £" + animals.upgradePrice(position) + " for the upgrade to level " + animals.level(position) + ".");
+                                    System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                                } 
+                            }
+                        }
+                    }
+                    else if (position != 0 && position != 13){
+                        System.out.print("Would you like to buy the " + animals.name(position) + " for £" + animals.buy(position) + "? Enter Y/N: ");
+                        Scanner reader = new Scanner(System.in);
+                        char choice = reader.next().charAt(0);
+                        if (choice == 'y' || choice == 'Y') {
+                            tPlayer.addMoney(-animals.buy(position));
+                            System.out.println("Congrats you have successfully purchased " + animals.name(position) + ".");
+                            animals.setOwned(position, tPlayerIndex);
+                            System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                        }
+                    }
                 }
                 else {
                     tPlayer.missAGo = false;
                 }
-                
             }
         }
     }
