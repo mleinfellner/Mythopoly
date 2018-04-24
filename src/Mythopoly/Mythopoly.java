@@ -78,10 +78,17 @@ public class Mythopoly {
                                 Scanner reader = new Scanner(System.in);
                                 char choice = reader.next().charAt(0);
                                 if (choice == 'y' || choice == 'Y') {
-                                    tPlayer.addMoney(-animals.upgradePrice(position));
-                                    animals.upgrade(position);
-                                    System.out.println("You have been charged £" + animals.upgradePrice(position) + " for the upgrade to level " + animals.level(position) + ".");
-                                    System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                                    if(tPlayer.StopUpgrade(animals.upgradePrice(position)))
+                                    {
+                                        System.out.println("You can't afford the upgrade");
+                                    }
+                                    else{
+                                        tPlayer.addMoney(-animals.upgradePrice(position));
+                                        animals.upgrade(position);
+                                        System.out.println("You have been charged £" + animals.upgradePrice(position) + " for the upgrade to level " + animals.level(position) + ".");
+                                        System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                                    }
+                                    
                                 } 
                             }
                         }
@@ -91,10 +98,17 @@ public class Mythopoly {
                         Scanner reader = new Scanner(System.in);
                         char choice = reader.next().charAt(0);
                         if (choice == 'y' || choice == 'Y') {
-                            tPlayer.addMoney(-animals.buy(position));
-                            System.out.println("Congrats you have successfully purchased " + animals.name(position) + ".");
-                            animals.setOwned(position, tPlayerIndex);
-                            System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                        if(tPlayer.StopBuy(animals.buy(position)))
+                            {
+                                System.out.println("You can't afford this animal");
+                            }
+                            else
+                            {
+                                tPlayer.addMoney(-animals.buy(position));
+                                System.out.println("Congrats you have successfully purchased " + animals.name(position) + ".");
+                                animals.setOwned(position, tPlayerIndex);
+                                System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                            }                            
                         }
                     }
                 }

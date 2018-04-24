@@ -56,6 +56,17 @@ public class Player {
         money += tMoney;
     }
     
+    public boolean StopBuy(int animalBuy){
+        return money < animalBuy;
+    }
+    public boolean StopUpgrade(int upgrade){
+        return money < upgrade;
+    }
+    
+     public boolean EndPlayer(int money){
+           return money<=0;
+     }
+     
     @Override
     public String toString() {
       return String.format("Player %s [%s] Cash £%d",name,counter,money);
