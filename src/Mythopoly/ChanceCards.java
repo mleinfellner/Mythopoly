@@ -5,9 +5,9 @@ import java.util.Random;
 
 public class ChanceCards {
     
-     private LinkedList<ChanceCard> ChanceCards = new LinkedList<>();       //List of possible chance cards
+     private LinkedList<ChanceCard> ChanceCards = new LinkedList<>(); //List of possible chance cards
      
-     private Random RandomGen=new Random();
+     private Random RandomGen = new Random();
 
      private void   AddDefaultCards() {
          ChanceCards.add(new ChanceCard("Mythical Vet Bill",-150));

@@ -71,6 +71,8 @@ public class Mythopoly {
                             tPlayer.addMoney(-animals.rent(position));
                             System.out.println("You have been charged £" + animals.rent(position) + " rent for landing on the " + animals.name(position) + ".");
                             System.out.println("Your balance is now £" + tPlayer.GetMoney() + ".");
+                            AllPlayers.GetPlayer(animals.owner(position)).addMoney(animals.rent(position));
+                            System.out.println(AllPlayers.GetPlayer(animals.owner(position)));
                         }
                         else {
                             if (animals.level(position) < 3) {
